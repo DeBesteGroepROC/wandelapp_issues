@@ -41,6 +41,14 @@ module.exports = function(grunt) {
                     {expand: true, cwd: './node_modules/ractive/', src: 'ractive.js', dest: './js/ractive/'}
                 ],
             },
+            final:{
+                files: [
+                    {expand:true,src: ['css/**'], dest:'public/'},
+                    {expand:true,src: ['js/**'], dest:'public/'},
+                    {expand:true,src: ['img/**'], dest:'public/'},
+                    {expand:true,src: ['index.html'], dest:'public/'}
+                ]
+            }
         },
         browserify: {
             dist: {
@@ -74,7 +82,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-exec');
 
     // Default task.
-    grunt.registerTask('default', ['jshint', 'copy', 'browserify']);
+    grunt.registerTask('default', ['jshint', 'copy:main', 'browserify', 'copy:final']);
     grunt.registerTask('test', ['exec']);
 
 };
