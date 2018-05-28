@@ -7,13 +7,12 @@ body {
     line-height: 1.4em;
 }
 
-/*#accordion {*/
-/*background-color: #eee;*/
-/*width:100vw;*/
-/*padding:1em;*/
-/*position: absolute;*/
-/*top: 100vh;*/
-/*}*/
+#accordion {
+    width: 100vw;
+    height: 15vh;
+    position: absolute;
+    bottom: 0;
+}
 #accordion div {
     font-size: 1.2em;
     line-height: 1.2em;
@@ -28,21 +27,20 @@ body {
 }
 
 #map {
-    height: 80vh;
-    width: 80vw;
+    height: 85vh;
+    width: 100vw;
     margin: 0 auto;
 }
 
 #upload {
     overflow-y: auto;
     transition: opacity .5s;
-    opacity: 1;
+    background:rgba(205,17,67,0.4);
     box-sizing: border-box;
     position: absolute;
-    bottom: 0;
+    bottom: 15vh;
     height: 15vw;
     width: 100vw;
-    background-color: #ddd;
     padding: 1em;
     z-index: 102;
 }
@@ -59,7 +57,7 @@ body {
 #file-input {
     width: 0.1px;
     height: 0.1px;
-    opacity: 0;
+    opacity: initial;
     overflow: hidden;
     position: absolute;
     z-index: -1;
@@ -69,8 +67,7 @@ body {
     position: absolute;
     width: 300px;
     height: 35px;
-    /*border: 1px solid white;*/
-    /*top: px;*/
+    opacity: 1;
     left: 50%;
     margin-left: -150px;
     padding-top: 15px;
@@ -82,4 +79,5 @@ body {
     text-align: center;
     margin: 0 auto;
     background-color: #d53741;
+    opacity: initial;
 }
