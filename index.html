@@ -4,6 +4,7 @@
     <meta charset=utf-8 />
     <title>Wandelapp</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="js/debug.js"></script>
 </head>
 <body>
 
@@ -20,7 +21,7 @@
             {{#each hikes}}
                 <h1 on-click="['collapse', data._id, this]">wandeling {{data.json.features.0.properties.name}}</h1>
                 <div class="item" id="route{{data._id}}">
-                    {{data.json.features.0.properties.desc}}
+                    {{data.jsgrunton.features.0.properties.desc}}
                 </div>
             {{/each}}
         </div>

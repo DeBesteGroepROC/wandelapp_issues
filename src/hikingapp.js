@@ -1,13 +1,20 @@
 import $ from 'jquery';
 import Ractive from 'ractive';
 import Map from './map';
-import {getroutesjson, posttextfile} from './routes';
+import {getroutesjson, posttextfile, getnewcuid} from './routes';
 
 // Hiking app
 const hikingapp = (remoteserver) => {
     'use strict';
 
     //Init
+
+    var cuid = localStorage.getItem("cuid");
+    getnewcuid(remoteserver).then(value => {
+        console.warn("CUID:",value["cuid"]);
+        cuid = value["cuid"];
+    });
+
     const ractive_ui = new Ractive({
         el: '#container',
         template: '#template',
@@ -15,11 +22,11 @@ const hikingapp = (remoteserver) => {
     });
     let map = null;
 
+
     // todo: Get cuid from localstorage if there is one. Otherwise ask backend (wandelappbackend_issues_v2) for new cuid:
     // todo: therefor implement getcuid function in routes.js module!
     // cuid is needed to get only the routes that belong to this cuid.
-    const cuid = 'test'; //todo: Temporarily use a dummy cuid (with the result that all app users see all routes!)
-
+    //const cuid = 'test'; //todo: Temporarily use a dummy cuid (with the result that all app users see all routes!)
     //Wait until Ractive is ready
     ractive_ui.on('complete', () => {
 
