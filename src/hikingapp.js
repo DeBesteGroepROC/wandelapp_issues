@@ -2,7 +2,7 @@ import $ from 'jquery';
 import Ractive from 'ractive';
 import Map from './map';
 import {getroutesjson, posttextfile} from './routes';
-
+import mapboxgl from 'mapbox-gl';
 // Hiking app
 const hikingapp = (remoteserver) => {
     'use strict';
