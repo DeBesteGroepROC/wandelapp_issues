@@ -9,11 +9,8 @@ const hikingapp = (remoteserver) => {
 
     //Init
 
-    var cuid = localStorage.getItem("cuid");
-    getnewcuid(remoteserver).then(value => {
-        console.warn("CUID:",value["cuid"]);
-        cuid = value["cuid"];
-    });
+    var cuid = localStorage.getItem("cuid") || "test";
+
 
     const ractive_ui = new Ractive({
         el: '#container',
@@ -23,11 +20,6 @@ const hikingapp = (remoteserver) => {
     let map = null;
 
 
-    // todo: Get cuid from localstorage if there is one. Otherwise ask backend (wandelappbackend_issues_v2) for new cuid:
-    // todo: therefor implement getcuid function in routes.js module!
-    // cuid is needed to get only the routes that belong to this cuid.
-    //const cuid = 'test'; //todo: Temporarily use a dummy cuid (with the result that all app users see all routes!)
-    //Wait until Ractive is ready
     ractive_ui.on('complete', () => {
 
         //New mapbox-gl map
@@ -39,22 +31,26 @@ const hikingapp = (remoteserver) => {
         };
 
         //Get routes from server and show these as choices
-        getroutesjson(remoteserver + '/routes?cuid=' + cuid)
-            .then(
-                (routesjson) => {
+        getnewcuid(remoteserver).then(value => {
+            if (cuid === "test") {
+                cuid = value["cuid"];
+                localStorage.setItem("cuid", cuid);
+                console.log("received new cuid",cuid);
+            } else {
+                console.log("using cached cuid:", cuid);
+            }
+        }).then(() => {
+            getroutesjson(remoteserver + '/routes?cuid=' + cuid)
+                .then((routesjson) => {
+                    console.log(routesjson);
                     ractive_ui.set("hikes", routesjson);
-                },
-                (reason) => {
-                    // Error retreiving routes!
+                }, (reason) => {
                     console.log(reason);
-                }
-            )
-            .catch(
-                (e) => {
+                })
+                .catch((e) => {
                     console.log(e);
-                }
-            )
-        ;
+                });
+        });
 
         //Update device location on map
         navigator.geolocation.watchPosition(map.geo_success.bind(map), null, geo_options);
