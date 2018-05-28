@@ -1,0 +1,15 @@
+{
+  "short_name": "WA",
+  "name": "Wandelapp",
+  "icons": [
+    {"src": "img/allsizes.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "img/allsizes.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "img/allsizes.png", "sizes": "144x144", "type": "image/png"},
+    {"src": "img/allsizes.png", "sizes": "96x96", "type": "image/png"},
+    {"src": "img/allsizes.png", "sizes": "48x48", "type": "image/png"}
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "white",
+  "theme_color": "#CD1143"
+}
