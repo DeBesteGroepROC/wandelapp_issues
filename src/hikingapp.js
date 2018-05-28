@@ -56,7 +56,7 @@ const hikingapp = (remoteserver) => {
     //Events
     ractive_ui.on({
             'collapse': (event, filename, routeobj) => {
-                console.log("yes yes yes");
+                console.log("yes yes yes gurl");
                 //Toggle description
                 $(".item").toggle(false);
                 $("#route" + filename).toggle(true);
