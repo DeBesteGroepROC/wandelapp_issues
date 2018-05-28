@@ -1,5 +1,3 @@
-import * as $ from 'jquery';
-
 /**
  * Read json from remoteserver
  * @param remoteserver
@@ -8,20 +6,20 @@ import * as $ from 'jquery';
 const getroutesjson = (remoteserver) => {
     return new Promise((resolve, reject) => { //New promise for array
         // let routesjson = [];
-        $.ajax({
-            type: "GET",
-            url: remoteserver,
-            dataType: "json"
-        })
-            .done((data) => {
-                    console.log(data);
-                    const routesjson = data.map((f) => {
-                        return {data: f};
-                    });
-                    resolve(routesjson);
-                }
-            )
-            .fail((err) => reject(err));
+        fetch(remoteserver, {
+            method: "GET",
+            headers: {'Content-Type': 'application/json'}
+        }).then(res => {
+            return res.json();
+        }).then(json => {
+            console.log(json);
+            const routesjson = json.map((f) => {
+                return {data: f};
+            });
+            resolve(routesjson);
+        }).catch(reason => {
+            reject(reason);
+        });
     });
 };
 
@@ -41,7 +39,7 @@ const getnewcuid = (remoteserver) => {
             return res.json();
         })
         .then(json => {
-            console.log("JSON:",json);
+            console.log("JSON:", json);
             return json;
         })
         .catch(err => {
