@@ -1,6 +1,8 @@
 npm-debug.log
 src/.DS_Store
 node_modules
-js/
+js/jquery
+js/ractive
+js/app_es5.js
 .idea
 public
