@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import Ractive from 'ractive';
 import Map from './map';
 import {getroutesjson, posttextfile, getnewcuid} from './routes';
@@ -59,15 +58,17 @@ const hikingapp = (remoteserver) => {
     //Events
     ractive_ui.on({
             'collapse': (event, filename, routeobj) => {
-                console.log("yes yes yes gurl");
-                //Toggle description
-                $(".item").toggle(false);
-                $("#route" + filename).toggle(true);
-                //Show chosen route on map
+
+
+                const item = document.querySelectorAll(".item");
+                const route = document.querySelector("#route" + filename);
+                item.style.display="none";
+                route.style.display="";
                 map.showroute(routeobj.data.json);
             },
             'uploadgpx': (event) => {
                 const file = event.original.target.files[0];
+                const item = document.querySelector("#item");
                 if (file) {
                     //Post route (gpx text file) async
                     posttextfile(remoteserver + '/upload?cuid=' + cuid, file)
@@ -78,20 +79,20 @@ const hikingapp = (remoteserver) => {
                                     .then(
                                         (routesjson) => {
                                             //Show success
-                                            $("#info").html("Route is toegevoegd");
+                                            item.innerHTML = "Route is toegevoegd";
                                             ractive_ui.set("hikes", routesjson);
                                             //Show chosen route
                                             map.showroute(routesjson[0].data.json);
                                         },
                                         (reason) => {
                                             //error
-                                            $("#info").html(reason);
+                                            item.innerHTML = reason;
                                         }
                                     )
                                     .catch(
                                         (reason) => {
                                             //error
-                                            $("#info").html(reason);
+                                            item.innerHTML = reason;
                                         }
                                     )
                                 ;
@@ -99,7 +100,7 @@ const hikingapp = (remoteserver) => {
                         )
                         .catch(
                             (e) => {
-                                $("#info").html(e);
+                                item.html(e);
                             }
                         )
                     ;
