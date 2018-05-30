@@ -1,5 +1,10 @@
+@media only screen and (max-width: 1000px) {
+    body {
+        color: blue;
+    }
+}
 html {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: 16px;
 }
 
@@ -9,7 +14,7 @@ body {
 
 #accordion {
     width: 100vw;
-    height: 15vh;
+    height: 150px;
     position: absolute;
     bottom: 0;
 }
@@ -28,7 +33,7 @@ body {
 }
 
 #map {
-    height: 85vh;
+    height: calc(100vh - 150px);
     width: 100vw;
     margin: 0 auto;
 }
@@ -38,8 +43,8 @@ body {
     background: rgba(205, 17, 67, 0.4);
     box-sizing: border-box;
     position: absolute;
-    bottom: 15vh;
-    height: 10vw;
+    bottom: 150px;
+    height: 80px;
     width: 100vw;
     padding: 1em;
     z-index: 102;
