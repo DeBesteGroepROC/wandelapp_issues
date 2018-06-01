@@ -1,13 +1,16 @@
-import $ from 'jquery';
 import Ractive from 'ractive';
 import Map from './map';
-import {getroutesjson, posttextfile} from './routes';
-import mapboxgl from 'mapbox-gl';
+import {getroutesjson, posttextfile, getnewcuid} from './routes';
+
 // Hiking app
 const hikingapp = (remoteserver) => {
     'use strict';
 
     //Init
+
+    var cuid = localStorage.getItem("cuid") || "test";
+
+
     const ractive_ui = new Ractive({
         el: '#container',
         template: '#template',
@@ -15,12 +18,7 @@ const hikingapp = (remoteserver) => {
     });
     let map = null;
 
-    // todo: Get cuid from localstorage if there is one. Otherwise ask backend (wandelappbackend_issues_v2) for new cuid:
-    // todo: therefor implement getcuid function in routes.js module!
-    // cuid is needed to get only the routes that belong to this cuid.
-    const cuid = 'test'; //todo: Temporarily use a dummy cuid (with the result that all app users see all routes!)
 
-    //Wait until Ractive is ready
     ractive_ui.on('complete', () => {
 
         //New mapbox-gl map
@@ -32,22 +30,26 @@ const hikingapp = (remoteserver) => {
         };
 
         //Get routes from server and show these as choices
-        getroutesjson(remoteserver + '/routes?cuid=' + cuid)
-            .then(
-                (routesjson) => {
+        getnewcuid(remoteserver).then(value => {
+            if (cuid === "test") {
+                cuid = value["cuid"];
+                localStorage.setItem("cuid", cuid);
+                console.log("received new cuid",cuid);
+            } else {
+                console.log("using cached cuid:", cuid);
+            }
+        }).then(() => {
+            getroutesjson(remoteserver + '/routes?cuid=' + cuid)
+                .then((routesjson) => {
+                    console.log(routesjson);
                     ractive_ui.set("hikes", routesjson);
-                },
-                (reason) => {
-                    // Error retreiving routes!
+                }, (reason) => {
                     console.log(reason);
-                }
-            )
-            .catch(
-                (e) => {
+                })
+                .catch((e) => {
                     console.log(e);
-                }
-            )
-        ;
+                });
+        });
 
         //Update device location on map
         navigator.geolocation.watchPosition(map.geo_success.bind(map), null, geo_options);
@@ -56,15 +58,19 @@ const hikingapp = (remoteserver) => {
     //Events
     ractive_ui.on({
             'collapse': (event, filename, routeobj) => {
-                console.log("yes yes yes");
-                //Toggle description
-                $(".item").toggle(false);
-                $("#route" + filename).toggle(true);
-                //Show chosen route on map
+
+
+                const items = document.querySelectorAll(".item");
+                const route = document.querySelector("#route" + filename);
+                items.forEach(item => {
+                    item.style.display="none";
+                });
+                route.style.display="";
                 map.showroute(routeobj.data.json);
             },
             'uploadgpx': (event) => {
                 const file = event.original.target.files[0];
+                const item = document.querySelector("#item");
                 if (file) {
                     //Post route (gpx text file) async
                     posttextfile(remoteserver + '/upload?cuid=' + cuid, file)
@@ -75,20 +81,20 @@ const hikingapp = (remoteserver) => {
                                     .then(
                                         (routesjson) => {
                                             //Show success
-                                            $("#info").html("Route is toegevoegd");
+                                            item.innerHTML = "Route is toegevoegd";
                                             ractive_ui.set("hikes", routesjson);
                                             //Show chosen route
                                             map.showroute(routesjson[0].data.json);
                                         },
                                         (reason) => {
                                             //error
-                                            $("#info").html(reason);
+                                            item.innerHTML = reason;
                                         }
                                     )
                                     .catch(
                                         (reason) => {
                                             //error
-                                            $("#info").html(reason);
+                                            item.innerHTML = reason;
                                         }
                                     )
                                 ;
@@ -96,7 +102,7 @@ const hikingapp = (remoteserver) => {
                         )
                         .catch(
                             (e) => {
-                                $("#info").html(e);
+                                item.html(e);
                             }
                         )
                     ;

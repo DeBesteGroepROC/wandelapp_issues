@@ -3,7 +3,7 @@
 <head>
     <meta charset=utf-8/>
     <title>Wandelapp</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
     <meta name='theme-color' content="#CD1143">
     <link rel="manifest" href="manifest.json">
 </head>
@@ -15,7 +15,12 @@
 <script id='template' type='text/ractive'>
 
         <!-- Mapbox -->
-        <div id='map'></div>
+        <div id='map'>
+            <div id='maptype'>
+                <img id="sat-image" class="kaartswitch" src="img/sat_image.png">
+                <img id="kaart-image" class="kaartswitch" src="img/kaart_image.png">
+            </div>
+        </div>
 
         <!-- Routes list -->
         <div id="accordion">
@@ -36,29 +41,30 @@
             <div id="info"></div>
         </div>
 
-    </script>
 
-<!-- Ractive div/template -->
-<div id='container'></div>
+</script>
+
+    <!-- Ractive div/template -->
+    <div id='container'></div>
 
 <link rel="stylesheet" type="text/css" href="css/cssreset.css"/>
 <link rel="stylesheet" type="text/css" href="css/wandelapp.css"/>
 <script src='js/app_es5.js'></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('sw.js').then(function(registration) {
-                    // Registration was successful
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function(err) {
-                    // registration failed :(
-                    console.log('ServiceWorker registration failed: ', err);
-                });
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('sw.js').then(function (registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function (err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
             });
-        }
-    </script>
-    <noscript>
-        Turn on javascript else this site will NOT work.
-    </noscript>
+        });
+    }
+</script>
+<noscript>
+    Turn on javascript else this site will NOT work.
+</noscript>
 </body>
 </html>
