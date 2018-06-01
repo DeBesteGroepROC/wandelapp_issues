@@ -1,7 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 
 class Mapboxgl {
-    constructor(){
+    constructor() {
         mapboxgl.accessToken = 'pk.eyJ1IjoiZHZyaWV0IiwiYSI6ImNpbzlxdnEzMTAwMHB3Y201Ym9yOHgzc24ifQ.B8cRwcPdY0e28MI2gqP1aA';
         return new mapboxgl.Map({
             container: 'map', // container id
@@ -24,10 +24,12 @@ export default class Map {
 
 
         this.map.on('click', function (e) {
-            const features = this.map.queryRenderedFeatures(e.point, { layers: ['poi'] });
+            const features = this.map.queryRenderedFeatures(e.point, {layers: ['poi']});
             if (!features.length) {
                 return;
             }
+
+
 
             const feature = features[0];
             console.log(feature);
@@ -43,7 +45,7 @@ export default class Map {
     }
 
     //Center map around coordinates
-    center(lnglat){
+    center(lnglat) {
         if (!lnglat) {
             return;
         }
@@ -54,7 +56,7 @@ export default class Map {
 
     //Show route and set events
     showroute(geo_json) {
-        if(!geo_json) {
+        if (!geo_json) {
             return;
         }
 
@@ -65,16 +67,16 @@ export default class Map {
             this.map.removeLayer("route");
             this.map.removeSource("route");
         }
-        catch(e){
+        catch (e) {
             console.log('layer or source doesnt exist');
         }
 
         /////
         // POI (points of interest)
         // https://www.mapbox.com/mapbox-gl-js/example/geojson-markers/
-        const poi_filter = geo_json.features.filter((feature)=>{
+        const poi_filter = geo_json.features.filter((feature) => {
             //If feature.geometry.type isn't Point, delete this feature
-            return feature.geometry.type==="Point";
+            return feature.geometry.type === "Point";
         });
         const poi = {
             "type": "geojson",
@@ -100,9 +102,9 @@ export default class Map {
         ///////
         // ROUTE
         // https://www.mapbox.com/mapbox-gl-js/example/geojson-line/
-        const route_filter = geo_json.features.filter((feature)=>{
+        const route_filter = geo_json.features.filter((feature) => {
             //If feature.geometry.type isn't LineString
-            return feature.geometry.type==="LineString";
+            return feature.geometry.type === "LineString";
         });
         const route = {
             "type": "geojson",
@@ -143,5 +145,4 @@ export default class Map {
             .addTo(this.map);
         this.center(location);
     }
-
 }

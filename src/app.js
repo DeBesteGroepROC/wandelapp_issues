@@ -10,3 +10,4 @@ document.addEventListener('DOMContentLoaded', () => {
     //Load the app with the REST server
     hikingapp(backendserver);
 });
+//

@@ -2,48 +2,82 @@ html {
     font-family: Arial;
     font-size: 16px;
 }
+
 body {
     line-height: 1.4em;
 }
- /*#accordion {*/
-     /*background-color: #eee;*/
-     /*width:100vw;*/
-     /*padding:1em;*/
-     /*position: absolute;*/
-     /*top: 100vh;*/
- /*}*/
+
+#accordion {
+    width: 100vw;
+    height: 15vh;
+    position: absolute;
+    bottom: 0;
+}
 #accordion div {
-    font-size:1.2em;
+    font-size: 1.2em;
     line-height: 1.2em;
-    display:none;
+    display: none;
     margin-bottom: 2em;
 }
-#accordion h1, #info h1{
+
+#accordion h1, #info h1 {
     margin-bottom: 0.6em;
     font-size: 1.4em;
     color: #cd1143;
 }
+
 #map {
-    height: 100vh;
+    height: 85vh;
+    width: 100vw;
+    margin: 0 auto;
 }
+
 #upload {
     overflow-y: auto;
     transition: opacity .5s;
-    opacity: 1;
+    background:rgba(205,17,67,0.4);
     box-sizing: border-box;
     position: absolute;
-    bottom: 0;
+    bottom: 15vh;
     height: 15vw;
     width: 100vw;
-    background-color: #ddd;
     padding: 1em;
     z-index: 102;
 }
- .marker {
-     display: block;
-     cursor: pointer;
-     background-image: url(../img/marker.svg); /* should be 20px by 20px, important for offset!! */
-     background-size: contain;
-     width:20px;
-     height:20px;
- }
+
+.marker {
+    display: block;
+    cursor: pointer;
+    background-image: url(../img/marker.svg); /* should be 20px by 20px, important for offset!! */
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+}
+
+#file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: initial;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+#file-label {
+    font-size: 1.5em;
+    position: absolute;
+    width: 300px;
+    height: 35px;
+    opacity: 1;
+    left: 50%;
+    margin-left: -150px;
+    padding-top: 15px;
+}
+#file-upload {
+    width: 300px;
+    height: 50px;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+    background-color: #d53741;
+    opacity: initial;
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset=utf-8 />
+    <meta charset=utf-8/>
     <title>Wandelapp</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <meta name='theme-color' content="#CD1143">
@@ -9,10 +9,10 @@
 </head>
 <body>
 
-    <!-- should be run on localhost -->
+<!-- should be run on localhost -->
 
-    <!-- Ractive template -->
-    <script id='template' type='text/ractive'>
+<!-- Ractive template -->
+<script id='template' type='text/ractive'>
 
         <!-- Mapbox -->
         <div id='map'></div>
@@ -29,18 +29,21 @@
 
         <!-- Info & upload -->
         <div id="upload">
-            <input on-change="uploadgpx" type="file" id="file-input" />
+            <div id="file-upload">
+                <input on-change="uploadgpx" type="file" id="file-input" name="file-input" accept="text/gpx"/>
+                <label for="file-input" id="file-label"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" fill="currentColor" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg>  Nieuwe GPX route...</label>
+            </div>
             <div id="info"></div>
         </div>
 
     </script>
 
-    <!-- Ractive div/template -->
-    <div id='container'></div>
+<!-- Ractive div/template -->
+<div id='container'></div>
 
-    <link rel="stylesheet" type="text/css" href="css/cssreset.css" />
-    <link rel="stylesheet" type="text/css" href="css/wandelapp.css" />
-    <script src='js/app_es5.js'></script>
+<link rel="stylesheet" type="text/css" href="css/cssreset.css"/>
+<link rel="stylesheet" type="text/css" href="css/wandelapp.css"/>
+<script src='js/app_es5.js'></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
