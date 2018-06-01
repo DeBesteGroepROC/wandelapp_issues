@@ -3,12 +3,25 @@ import mapboxgl from 'mapbox-gl';
 class Mapboxgl {
     constructor() {
         mapboxgl.accessToken = 'pk.eyJ1IjoiZHZyaWV0IiwiYSI6ImNpbzlxdnEzMTAwMHB3Y201Ym9yOHgzc24ifQ.B8cRwcPdY0e28MI2gqP1aA';
-        return new mapboxgl.Map({
+        const map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v8',
             center: [4.895168, 52.370216], // starting position
             zoom: 9 // starting zoom
         });
+        const satimg = document.getElementById('sat-image');
+        const kaartimg = document.getElementById('kaart-image');
+        kaartimg.addEventListener('click', ()=>{
+            map.setStyle('mapbox://styles/mapbox/streets-v8');
+            satimg.style.display = 'block';
+            kaartimg.style.display = 'none';
+        });
+        satimg.addEventListener('click', ()=>{
+            map.setStyle('mapbox://styles/mapbox/satellite-v9');
+            satimg.style.display = 'none';
+            kaartimg.style.display = 'block';
+        });
+        return map;
     }
 }
 
