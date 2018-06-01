@@ -60,9 +60,11 @@ const hikingapp = (remoteserver) => {
             'collapse': (event, filename, routeobj) => {
 
 
-                const item = document.querySelectorAll(".item");
+                const items = document.querySelectorAll(".item");
                 const route = document.querySelector("#route" + filename);
-                item.style.display="none";
+                items.forEach(item => {
+                    item.style.display="none";
+                });
                 route.style.display="";
                 map.showroute(routeobj.data.json);
             },
