@@ -1,8 +1,13 @@
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 600px) {
     body {
         color: blue;
     }
+
+    #map {
+        visibility: hidden;
+    }
 }
+
 html {
     font-family: Arial, sans-serif;
     font-size: 16px;
@@ -67,6 +72,7 @@ body {
     position: absolute;
     z-index: -1;
 }
+
 #file-label {
     font-size: 1.5em;
     position: absolute;
@@ -78,6 +84,7 @@ body {
     margin-left: -150px;
     padding-top: 15px;
 }
+
 #file-upload {
     width: 300px;
     height: 50px;
@@ -85,4 +92,21 @@ body {
     text-align: center;
     margin: 0 auto;
     background-color: #d53741;
+}
+
+.kaartswitch {
+    position: absolute;
+    left: 20px;
+    bottom: 250px;
+    z-index: 9;
+    width: 75px;
+    height: 75px;
+    border: 1px solid white;
+}
+
+#kaart-image {
+    display: none;
+}
+#sat-image {
+    display: block;
 }
