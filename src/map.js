@@ -16,7 +16,7 @@ class Mapboxgl {
             satimg.style.display = 'block';
             kaartimg.style.display = 'none';
         });
-        satimg.addEventListener('click', () => {
+        satimg.addEventListener('click', ()=>{
             map.setStyle('mapbox://styles/mapbox/satellite-v9');
             satimg.style.display = 'none';
             kaartimg.style.display = 'block';
@@ -36,6 +36,7 @@ export default class Map {
         this.el.className = 'marker';
         this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
         this.map.scrollZoom.disable();
+        this.map.addControl(new mapboxgl.FullscreenControl());
         this.map.addControl(new mapboxgl.GeolocateControl({
             positionOptions: {
                 enableHighAccuracy: true
@@ -43,12 +44,12 @@ export default class Map {
             trackUserLocation: true
         }));
 
-
         this.map.on('click', function (e) {
             const features = this.map.queryRenderedFeatures(e.point, {layers: ['poi']});
             if (!features.length) {
                 return;
             }
+
 
 
             const feature = features[0];

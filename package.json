@@ -14,14 +14,20 @@
     "grunt": "~1.0.1",
     "grunt-browserify": "~5.0.0",
     "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-htmlmin": "^2.4.0",
     "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-uglify": "^3.3.0",
+    "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-contrib-watch": "~1.0.0",
     "grunt-exec": "^1.0.1",
     "tape": "^4.6.2",
     "tape-promise": "^1.1.0"
   },
   "dependencies": {
-    "jquery": "~3.1.1",
+    "browser-run": "^5.0.0",
+    "browserify": "^16.2.2",
+    "electron": "^2.0.1",
     "mapbox-gl": "~0.38.0",
     "ractive": "~0.9.0"
   }

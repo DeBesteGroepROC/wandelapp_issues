@@ -4,6 +4,8 @@
     <meta charset=utf-8/>
     <title>Wandelapp</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+    <meta name='theme-color' content="#CD1143">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
@@ -40,16 +42,31 @@
             <div id="info"></div>
         </div>
 
-
-</script>
+    </script>
 
 <!-- Ractive div/template -->
 <div id='container'></div>
 
 <link rel="stylesheet" type="text/css" href="css/cssreset.css"/>
 <link rel="stylesheet" type="text/css" href="css/wandelapp.css"/>
-<link rel="stylesheet" type="text/css" href="node_modules/mapbox-gl/dist/mapbox-gl.css"/>
-<link rel="stylesheet" type="text/css" href="node_modules/mapbox-gl/dist/mapbox-gl.js"/>
+<link rel="stylesheet" type="text/css" href="mapbox/mapbox-gl.css"/>
+<script src="mapbox/mapbox-gl.js"></script>
 <script src='js/app_es5.js'></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('sw.js').then(function (registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function (err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+</script>
+<noscript>
+    Turn on javascript else this site will NOT work.
+</noscript>
 </body>
 </html>
