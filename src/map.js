@@ -9,6 +9,8 @@ class Mapboxgl {
             center: [4.895168, 52.370216], // starting position
             zoom: 9 // starting zoom
         });
+        // map.addControl(new mapboxgl.NavigationControl());
+
         const satimg = document.getElementById('sat-image');
         const kaartimg = document.getElementById('kaart-image');
         kaartimg.addEventListener('click', ()=>{
@@ -34,7 +36,15 @@ export default class Map {
         this.youarehere = null;
         this.el = document.createElement('div');
         this.el.className = 'marker';
-
+        this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+        this.map.scrollZoom.disable();
+        this.map.addControl(new mapboxgl.FullscreenControl());
+        this.map.addControl(new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true
+        }));
 
         this.map.on('click', function (e) {
             const features = this.map.queryRenderedFeatures(e.point, {layers: ['poi']});
@@ -43,6 +53,7 @@ export default class Map {
             }
 
 
+            // this.map.addControl(new mapboxgl.NavigationControl());
 
             const feature = features[0];
             console.log(feature);

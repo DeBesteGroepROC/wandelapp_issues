@@ -36,22 +36,21 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-                    // Copy jquery and ractive
+                    // Copy jquery and ractive and mapbox
                     {expand: true, cwd: './node_modules/jquery/dist/', src: 'jquery.min.js', dest: './js/jquery/', ext: '.js'},
-                    {expand: true, cwd: './node_modules/ractive/', src: 'ractive.min.js', dest: './js/ractive/', ext: '.js'}
+                    {expand: true, cwd: './node_modules/ractive/', src: 'ractive.min.js', dest: './js/ractive/', ext: '.js'},
+                    {expand: true, cwd: './node_modules/mapbox-gl/dist/', src: 'mapbox-gl.js', dest: './mapbox/', ext: '.js'},
+                    {expand: true, cwd: './node_modules/mapbox-gl/dist/', src: 'mapbox-gl.css', dest: './mapbox/', ext: '.css'}
                 ],
             },
             final:{
                 files: [
                     {expand:true,cwd: 'css/mincss', src: ['**'], dest:'public/css'},
                     {expand:true,cwd: 'js/', src: ['**', '!sw.js'], dest:'public/js'},
-                    // {expand:true,cwd: 'js/minjs', src: ['**'], dest:'public/js'},
                     {expand:true,cwd: 'js/', src: ['sw.js'], dest:'public/'},
-                    // {expand:true,cwd: 'js/jquery', src: ['jquery.js'], dest:'public/js/jquery'},
                     {expand:true,src: ['img/**'], dest:'public/'},
                     {expand:true,src: ['manifest.json'], dest:'public/'},
-                    // {expand:true,src: ['js/**', '!js/app_es5.js'], dest:'public/'},
-                    // {expand:true,src: ['index.html'], dest:'public/'}
+                    {expand:true,src: 'mapbox/*', dest:'public/'},
                 ]
             }
         },
