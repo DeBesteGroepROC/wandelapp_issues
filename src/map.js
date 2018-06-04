@@ -11,12 +11,12 @@ class Mapboxgl {
         });
         const satimg = document.getElementById('sat-image');
         const kaartimg = document.getElementById('kaart-image');
-        kaartimg.addEventListener('click', ()=>{
+        kaartimg.addEventListener('click', () => {
             map.setStyle('mapbox://styles/mapbox/streets-v8');
             satimg.style.display = 'block';
             kaartimg.style.display = 'none';
         });
-        satimg.addEventListener('click', ()=>{
+        satimg.addEventListener('click', () => {
             map.setStyle('mapbox://styles/mapbox/satellite-v9');
             satimg.style.display = 'none';
             kaartimg.style.display = 'block';
@@ -34,6 +34,14 @@ export default class Map {
         this.youarehere = null;
         this.el = document.createElement('div');
         this.el.className = 'marker';
+        this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+        this.map.scrollZoom.disable();
+        this.map.addControl(new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true
+        }));
 
 
         this.map.on('click', function (e) {
@@ -41,7 +49,6 @@ export default class Map {
             if (!features.length) {
                 return;
             }
-
 
 
             const feature = features[0];
