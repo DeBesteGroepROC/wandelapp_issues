@@ -9,11 +9,9 @@ class Mapboxgl {
             center: [4.895168, 52.370216], // starting position
             zoom: 9 // starting zoom
         });
-        // map.addControl(new mapboxgl.NavigationControl());
-
         const satimg = document.getElementById('sat-image');
         const kaartimg = document.getElementById('kaart-image');
-        kaartimg.addEventListener('click', ()=>{
+        kaartimg.addEventListener('click', () => {
             map.setStyle('mapbox://styles/mapbox/streets-v8');
             satimg.style.display = 'block';
             kaartimg.style.display = 'none';
@@ -53,7 +51,6 @@ export default class Map {
             }
 
 
-            // this.map.addControl(new mapboxgl.NavigationControl());
 
             const feature = features[0];
             console.log(feature);
