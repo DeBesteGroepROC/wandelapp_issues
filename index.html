@@ -6,6 +6,8 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
     <meta name='theme-color' content="#CD1143">
     <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" type="text/css" href="mapbox/mapbox-gl.css"/>
+    <script src="mapbox/mapbox-gl.js"></script>
 </head>
 <body>
 
@@ -22,7 +24,6 @@
             </div>
             <div id='huidigelocatie'><img id='huidigelocatie-img' src="img/location_pin.svg"></div>
         </div>
-
         <!-- Routes list -->
         <div id="accordion">
             {{#each hikes}}
@@ -49,8 +50,6 @@
 
 <link rel="stylesheet" type="text/css" href="css/cssreset.css"/>
 <link rel="stylesheet" type="text/css" href="css/wandelapp.css"/>
-<link rel="stylesheet" type="text/css" href="mapbox/mapbox-gl.css"/>
-<script src="mapbox/mapbox-gl.js"></script>
 <script src='js/app_es5.js'></script>
 <script>
     if ('serviceWorker' in navigator) {
