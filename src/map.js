@@ -29,6 +29,7 @@ export default class Map {
 
     //Init
     constructor() {
+        this.centreren = true;
         this.map = new Mapboxgl();
         this.defaultzoomlevel = 12;
         this.youarehere = null;
@@ -37,13 +38,21 @@ export default class Map {
         this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
         this.map.scrollZoom.disable();
         this.map.addControl(new mapboxgl.FullscreenControl());
-        this.map.addControl(new mapboxgl.GeolocateControl({
-            positionOptions: {
-                enableHighAccuracy: true
-            },
-            trackUserLocation: true
-        }));
-
+        // this.map.addControl(new mapboxgl.GeolocateControl({
+        //     positionOptions: {
+        //         enableHighAccuracy: true
+        //     },
+        //     trackUserLocation: true
+        // }));
+        document.getElementById('huidigelocatie-img').addEventListener('click', ()=>{
+            if (this.centreren) {
+                this.centreren = false;
+                console.log(this.centreren);
+            } else {
+                this.centreren = true;
+                console.log(this.centreren);
+            }
+        });
         this.map.on('click', function (e) {
             const features = this.map.queryRenderedFeatures(e.point, {layers: ['poi']});
             if (!features.length) {
@@ -152,7 +161,6 @@ export default class Map {
         this.center(c);
 
     }
-
     //You-are-here Marker
     geo_success(position) {
         console.log("New pos:" + position);
@@ -164,6 +172,8 @@ export default class Map {
         this.youarehere = new mapboxgl.Marker(this.el, {offset: [-10, -10]})
             .setLngLat(location)
             .addTo(this.map);
-        this.center(location);
+        if(this.centreren){
+            this.center(location);
+        }
     }
 }

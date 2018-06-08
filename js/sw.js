@@ -5,9 +5,13 @@ var urlsToCache = [
     'css/wandelapp.css',
     'img/marker.svg',
     'img/allsizes.png',
+    'img/sat_image.png',
+    'img/kaart_image.png',
     'js/jquery/jquery.js',
     'js/ractive/ractive.js',
     'js/app_es5.js',
+    'mapbox/mapbox-gl.css',
+    'mapbox/mapbox-gl.js',
     'https://nodejs-mongo-persistent-wandelappbackend-v4.a3c1.starter-us-west-1.openshiftapps.com/routes?cuid=test'
 ];
 
