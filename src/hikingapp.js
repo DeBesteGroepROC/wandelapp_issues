@@ -34,7 +34,7 @@ const hikingapp = (remoteserver) => {
             if (cuid === "test") {
                 cuid = value["cuid"];
                 localStorage.setItem("cuid", cuid);
-                console.log("received new cuid",cuid);
+                console.log("received new cuid", cuid);
             } else {
                 console.log("using cached cuid:", cuid);
             }
@@ -63,14 +63,15 @@ const hikingapp = (remoteserver) => {
                 const items = document.querySelectorAll(".item");
                 const route = document.querySelector("#route" + filename);
                 items.forEach(item => {
-                    item.style.display="none";
+                    item.style.display = "none";
                 });
-                route.style.display="";
+                route.style.display = "";
                 map.showroute(routeobj.data.json);
             },
             'uploadgpx': (event) => {
                 const file = event.original.target.files[0];
-                const item = document.querySelector("#item");
+                const info = document.querySelector("#info");
+
                 if (file) {
                     //Post route (gpx text file) async
                     posttextfile(remoteserver + '/upload?cuid=' + cuid, file)
@@ -80,21 +81,21 @@ const hikingapp = (remoteserver) => {
                                 getroutesjson(remoteserver + '/routes?cuid=' + cuid)
                                     .then(
                                         (routesjson) => {
-                                            //Show success
-                                            item.innerHTML = "Route is toegevoegd";
+                                            info.innerHTML = "Route is toegevoegd";
                                             ractive_ui.set("hikes", routesjson);
-                                            //Show chosen route
-                                            map.showroute(routesjson[0].data.json);
+                                            console.log(routesjson);
+                                            map.showroute(routesjson[routesjson.length - 1].data.json);
+
                                         },
                                         (reason) => {
                                             //error
-                                            item.innerHTML = reason;
+                                            console.error(reason);
                                         }
                                     )
                                     .catch(
                                         (reason) => {
                                             //error
-                                            item.innerHTML = reason;
+                                            console.error(reason);
                                         }
                                     )
                                 ;
@@ -102,7 +103,7 @@ const hikingapp = (remoteserver) => {
                         )
                         .catch(
                             (e) => {
-                                item.html(e);
+                                console.error(e);
                             }
                         )
                     ;
