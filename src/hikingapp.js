@@ -71,6 +71,8 @@ const hikingapp = (remoteserver) => {
             'uploadgpx': (event) => {
                 const file = event.original.target.files[0];
                 const item = document.querySelector("#item");
+                const info = document.querySelector("#info");
+
                 if (file) {
                     //Post route (gpx text file) async
                     posttextfile(remoteserver + '/upload?cuid=' + cuid, file)
@@ -81,7 +83,7 @@ const hikingapp = (remoteserver) => {
                                     .then(
                                         (routesjson) => {
                                             //Show success
-                                            item.innerHTML = "Route is toegevoegd";
+                                            info.innerHTML = "Route is toegevoegd";
                                             ractive_ui.set("hikes", routesjson);
                                             console.log(routesjson);
                                             // console.log('a');
@@ -93,13 +95,13 @@ const hikingapp = (remoteserver) => {
                                         },
                                         (reason) => {
                                             //error
-                                            item.innerHTML = reason;
+                                            console.error(reason);
                                         }
                                     )
                                     .catch(
                                         (reason) => {
                                             //error
-                                            item.innerHTML = reason;
+                                            console.error(reason);
                                         }
                                     )
                                 ;
@@ -107,7 +109,7 @@ const hikingapp = (remoteserver) => {
                         )
                         .catch(
                             (e) => {
-                                item.html(e);
+                                info.innerHTML(e);
                             }
                         )
                     ;
