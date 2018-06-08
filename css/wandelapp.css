@@ -99,7 +99,7 @@ body {
 .kaartswitch {
     position: absolute;
     left: 20px;
-    bottom: 250px;
+    bottom: 100px;
     z-index: 9;
     width: 75px;
     height: 75px;
@@ -125,5 +125,5 @@ body {
     z-index: 3;
     position: absolute;
     left: 20px;
-    bottom: 350px;
+    bottom: 200px;
 }
