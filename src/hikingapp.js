@@ -65,7 +65,7 @@ const hikingapp = (remoteserver) => {
                 items.forEach(item => {
                     item.style.display = "none";
                 });
-                route.style.display = "";
+                route.style.display = "block";
                 map.showroute(routeobj.data.json);
             },
             'uploadgpx': (event) => {

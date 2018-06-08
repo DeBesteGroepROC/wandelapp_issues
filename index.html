@@ -15,7 +15,7 @@
 
 <!-- Ractive template -->
 <script id='template' type='text/ractive'>
-
+        <div id="loader"><p>Loading...</p></div>
         <!-- Mapbox -->
         <div id='map'>
             <div id='maptype'>
@@ -23,15 +23,6 @@
                 <img id="kaart-image" class="kaartswitch" src="img/kaart_image.png">
             </div>
             <div id='huidigelocatie'><img id='huidigelocatie-img' src="img/location_pin.svg"></div>
-        </div>
-        <!-- Routes list -->
-        <div id="accordion">
-            {{#each hikes}}
-                <h1 on-click="['collapse', data._id, this]">wandeling {{data.json.features.0.properties.name}}</h1>
-                <div class="item" id="route{{data._id}}">
-                    {{data.json.features.0.properties.desc}}
-                </div>
-            {{/each}}
         </div>
 
         <!-- Info & upload -->
@@ -42,6 +33,18 @@
             </div>
             <div id="info"></div>
         </div>
+
+        <!-- Routes list -->
+        <div id="accordion">
+            {{#each hikes}}
+                <h1 on-click="['collapse', data._id, this]">wandeling {{data.json.features.0.properties.name}}</h1>
+                <div class="item" id="route{{data._id}}">
+                    {{data.json.features.0.properties.desc}}
+                </div>
+            {{/each}}
+        </div>
+
+
 
     </script>
 
