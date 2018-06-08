@@ -34,7 +34,7 @@ const hikingapp = (remoteserver) => {
             if (cuid === "test") {
                 cuid = value["cuid"];
                 localStorage.setItem("cuid", cuid);
-                console.log("received new cuid",cuid);
+                console.log("received new cuid", cuid);
             } else {
                 console.log("using cached cuid:", cuid);
             }
@@ -63,9 +63,9 @@ const hikingapp = (remoteserver) => {
                 const items = document.querySelectorAll(".item");
                 const route = document.querySelector("#route" + filename);
                 items.forEach(item => {
-                    item.style.display="none";
+                    item.style.display = "none";
                 });
-                route.style.display="";
+                route.style.display = "";
                 map.showroute(routeobj.data.json);
             },
             'uploadgpx': (event) => {
@@ -81,15 +81,10 @@ const hikingapp = (remoteserver) => {
                                 getroutesjson(remoteserver + '/routes?cuid=' + cuid)
                                     .then(
                                         (routesjson) => {
-                                            //Show success
                                             info.innerHTML = "Route is toegevoegd";
                                             ractive_ui.set("hikes", routesjson);
                                             console.log(routesjson);
-                                            // console.log('a');
-                                            //Show chosen route
-                                            // for (i = 0; i <= 0 ; i++){
-                                                map.showroute(routesjson[routesjson.length-1].data.json);
-                                            // }
+                                            map.showroute(routesjson[routesjson.length - 1].data.json);
 
                                         },
                                         (reason) => {
@@ -108,7 +103,7 @@ const hikingapp = (remoteserver) => {
                         )
                         .catch(
                             (e) => {
-                                info.innerHTML(e);
+                                console.error(e);
                             }
                         )
                     ;
