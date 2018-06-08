@@ -35,6 +35,7 @@ export default class Map {
         this.youarehere = null;
         this.el = document.createElement('div');
         this.el.className = 'marker';
+
         this.map.addControl(new mapboxgl.NavigationControl(), 'top-right');
         this.map.scrollZoom.disable();
         this.map.addControl(new mapboxgl.FullscreenControl());
