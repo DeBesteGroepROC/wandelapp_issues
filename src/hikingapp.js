@@ -70,7 +70,6 @@ const hikingapp = (remoteserver) => {
             },
             'uploadgpx': (event) => {
                 const file = event.original.target.files[0];
-                const item = document.querySelector("#item");
                 const info = document.querySelector("#info");
 
                 if (file) {
@@ -89,7 +88,7 @@ const hikingapp = (remoteserver) => {
                                             // console.log('a');
                                             //Show chosen route
                                             // for (i = 0; i <= 0 ; i++){
-                                            //     map.showroute(routesjson[0].data.json);
+                                                map.showroute(routesjson[routesjson.length-1].data.json);
                                             // }
 
                                         },
