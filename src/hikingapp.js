@@ -43,6 +43,9 @@ const hikingapp = (remoteserver) => {
                 .then((routesjson) => {
                     console.log(routesjson);
                     ractive_ui.set("hikes", routesjson);
+                    const loader = document.getElementById("loader");
+                    // console.log("loader",loader);
+                    loader.classList.add("done");
                 }, (reason) => {
                     console.log(reason);
                 })

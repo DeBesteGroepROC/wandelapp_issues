@@ -129,8 +129,13 @@ body {
 
 #loader{
     position: absolute;
-    background-color:slategray;
-    height:100vh;
-    width:100vw;
+    background-color: #708090;
+    height: 100vh;
+    width: 100vw;
     overflow: hidden;
+    z-index: 10000;
+}
+#loader.done{
+    transition: opacity 1s;
+    opacity:0;
 }
