@@ -3,9 +3,9 @@
         color: blue;
     }
 
-    #map {
-        visibility: hidden;
-    }
+    /*#map {*/
+        /*visibility: hidden;*/
+    /*}*/
 }
 
 html {
@@ -18,10 +18,9 @@ body {
 }
 
 #accordion {
-    width: 100vw;
-    height: 150px;
-    position: absolute;
-    bottom: 0;
+    width: 100%;
+    position: relative;
+    /*top: -80px;*/
 }
 
 #accordion div {
@@ -39,18 +38,18 @@ body {
 
 #map {
     height: calc(100vh - 150px);
-    width: 100vw;
+    /*width: 100vw;*/
     margin: 0 auto;
 }
 
 #upload {
-    overflow-y: auto;
-    background: rgba(205, 17, 67, 0.4);
+    overflow: hidden;
+    width: 100%;
+    background-color: rgba(205,17,67,.4);
     box-sizing: border-box;
     position: absolute;
-    bottom: 150px;
+    top: calc(100vh - 230px);
     height: 80px;
-    width: 100vw;
     padding: 1em;
     z-index: 102;
 }
@@ -127,4 +126,17 @@ body {
     left: 35px;
     bottom: 200px;
     transition: 0.5s;
+}
+
+#loader{
+    position: absolute;
+    background-color: #708090;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    z-index: 10000;
+}
+#loader.done{
+    transition: opacity 1s;
+    opacity:0;
 }
