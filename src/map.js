@@ -48,9 +48,17 @@ export default class Map {
             if (this.centreren) {
                 this.centreren = false;
                 console.log(this.centreren);
+                const x = document.getElementById('huidigelocatie-img');
+                x.style.width = '50px';
+                x.style.height = '50px';
+                x.style.left = '35px';
             } else {
                 this.centreren = true;
                 console.log(this.centreren);
+                const x = document.getElementById('huidigelocatie-img');
+                x.style.width = '75px';
+                x.style.height = '75px';
+                x.style.left = '20px';
             }
         });
         this.map.on('click', function (e) {

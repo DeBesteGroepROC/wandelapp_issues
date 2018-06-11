@@ -124,6 +124,7 @@ body {
     height: 50px;
     z-index: 3;
     position: absolute;
-    left: 20px;
+    left: 35px;
     bottom: 200px;
+    transition: 0.5s;
 }
