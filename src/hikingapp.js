@@ -87,6 +87,7 @@ const hikingapp = (remoteserver) => {
                                             info.innerHTML = "Route is toegevoegd";
                                             ractive_ui.set("hikes", routesjson);
                                             console.log(routesjson);
+                                            // hier onder aangepast:
                                             map.showroute(routesjson[routesjson.length - 1].data.json);
 
                                         },
