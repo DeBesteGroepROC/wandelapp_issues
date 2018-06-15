@@ -43,6 +43,9 @@ const hikingapp = (remoteserver) => {
                 .then((routesjson) => {
                     console.log(routesjson);
                     ractive_ui.set("hikes", routesjson);
+                    const loader = document.getElementById("loader");
+                    // console.log("loader",loader);
+                    loader.classList.add("done");
                 }, (reason) => {
                     console.log(reason);
                 })
@@ -65,7 +68,7 @@ const hikingapp = (remoteserver) => {
                 items.forEach(item => {
                     item.style.display = "none";
                 });
-                route.style.display = "";
+                route.style.display = "block";
                 map.showroute(routeobj.data.json);
             },
             'uploadgpx': (event) => {
