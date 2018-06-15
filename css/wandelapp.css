@@ -127,3 +127,6 @@ body {
     left: 20px;
     bottom: 350px;
 }
+.mapboxgl-popup-content{
+    font-size: 15px;
+}
