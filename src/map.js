@@ -147,7 +147,7 @@ export default class Map {
                 "line-cap": "round"
             },
             "paint": {
-                "line-color": "#888",
+                "line-color": "#0046ff",
                 "line-width": 4
             }
         });
