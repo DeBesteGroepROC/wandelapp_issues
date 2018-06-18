@@ -154,3 +154,6 @@ body {
 .mapboxgl-popup-content{
     font-size: 15px;
 }
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib{
+    display: none !important;
+}
