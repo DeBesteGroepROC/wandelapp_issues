@@ -125,22 +125,6 @@ export default class Map {
             }
         };
         this.map.addSource("poi", poi);
-        let routelayer = this.map.addLayer({
-            "id": "poi",
-            "type": "symbol",
-            "source": "poi",
-            "layout": {
-                "icon-image": "monument-15",
-                "text-field": "{name}",
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                "text-offset": [0, 0.6],
-                "text-anchor": "top"
-            },
-            "paint": {
-                "text-color": "#FFFFFF",
-
-            }
-        });
 
         ///////
         // ROUTE
@@ -168,7 +152,23 @@ export default class Map {
             }
         });
 
-
+        let routelayer = this.map.addLayer({
+            "id": "poi",
+            "type": "symbol",
+            "source": "poi",
+            "layout": {
+                "icon-image": "monument-15",
+                "text-field": "{name}",
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-offset": [0, 0.6],
+                "text-anchor": "top"
+            },
+            "paint": {
+                "text-color": "#FFFFFF",
+                "text-halo-color": "rgba(0, 0, 0, 1)",
+                "text-halo-width": 1
+            }
+        });
         //Center the route
         const c = [geo_json.features[0].geometry.coordinates[0][0], geo_json.features[0].geometry.coordinates[0][1]];
         this.center(c);
