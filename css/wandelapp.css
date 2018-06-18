@@ -3,9 +3,9 @@
         color: blue;
     }
 
-    /*#map {*/
-        /*visibility: hidden;*/
-    /*}*/
+    #map {
+        visibility: hidden;
+    }
 }
 
 html {
@@ -18,9 +18,10 @@ body {
 }
 
 #accordion {
-    width: 100%;
-    position: relative;
-    /*top: -80px;*/
+    width: 100vw;
+    height: 150px;
+    position: absolute;
+    bottom: 0;
 }
 
 #accordion div {
@@ -38,18 +39,18 @@ body {
 
 #map {
     height: calc(100vh - 150px);
-    /*width: 100vw;*/
+    width: 100vw;
     margin: 0 auto;
 }
 
 #upload {
-    overflow: hidden;
-    width: 100%;
-    background-color: rgba(205,17,67,.4);
+    overflow-y: auto;
+    background: rgba(205, 17, 67, 0.4);
     box-sizing: border-box;
     position: absolute;
-    top: calc(100vh - 230px);
+    bottom: 150px;
     height: 80px;
+    width: 100vw;
     padding: 1em;
     z-index: 102;
 }
@@ -126,16 +127,6 @@ body {
     left: 20px;
     bottom: 350px;
 }
-
-#loader{
-    position: absolute;
-    background-color: #708090;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    z-index: 10000;
-}
-#loader.done{
-    transition: opacity 1s;
-    opacity:0;
+.mapboxgl-popup-content{
+    font-size: 15px;
 }
