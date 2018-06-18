@@ -20,7 +20,6 @@ body {
 #accordion {
     width: 100%;
     position: relative;
-    /*top: -80px;*/
 }
 
 #accordion div {
@@ -38,7 +37,6 @@ body {
 
 #map {
     height: calc(100vh - 150px);
-    /*width: 100vw;*/
     margin: 0 auto;
 }
 
@@ -77,8 +75,6 @@ body {
     position: absolute;
     width: 300px;
     height: 35px;
-    /*border: 1px solid white;*/
-    /*top: px;*/
     left: 50%;
     margin-left: -150px;
     padding-top: 15px;
@@ -98,7 +94,7 @@ body {
 .kaartswitch {
     position: absolute;
     left: 20px;
-    bottom: 100px;
+    bottom: 150px;
     z-index: 9;
     width: 75px;
     height: 75px;
@@ -124,19 +120,27 @@ body {
     z-index: 3;
     position: absolute;
     left: 35px;
-    bottom: 200px;
+    bottom: 250px;
     transition: 0.5s;
 }
 
 #info {
+    box-sizing: border-box;
     position: absolute;
     left: 50%;
-    bottom: 220px;
+    bottom: 240px;
     width: 500px;
     height: 80px;
     margin-left: -250px;
-    background-color: rgba(255, 255, 255, 0.5);
-
+    background-color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    padding: 30px;
+    font-size: 35px;
+    opacity: 0;
+}
+#info.infodone {
+    transition: opacity 1s;
+    transition-delay: 10s;
 }
 
 #loader{

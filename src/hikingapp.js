@@ -74,7 +74,7 @@ const hikingapp = (remoteserver) => {
             'uploadgpx': (event) => {
                 const file = event.original.target.files[0];
                 const info = document.querySelector("#info");
-
+                const x = document.getElementById('info');
                 if (file) {
                     //Post route (gpx text file) async
                     posttextfile(remoteserver + '/upload?cuid=' + cuid, file)
@@ -84,7 +84,11 @@ const hikingapp = (remoteserver) => {
                                 getroutesjson(remoteserver + '/routes?cuid=' + cuid)
                                     .then(
                                         (routesjson) => {
+                                            x.style.opacity = '1';
                                             info.innerHTML = "Route is toegevoegd";
+                                            x.classList.add('infodone');
+                                            x.style.opacity = '0';
+                                            setTimeout(x.classList.remove('infodone'), 12000);
                                             ractive_ui.set("hikes", routesjson);
                                             console.log(routesjson);
                                             map.showroute(routesjson[routesjson.length - 1].data.json);
