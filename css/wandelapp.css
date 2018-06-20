@@ -20,6 +20,7 @@ body {
 #accordion {
     width: 100%;
     position: relative;
+    padding: 10px;
 }
 
 #accordion div {
@@ -136,11 +137,12 @@ body {
     text-align: center;
     padding: 30px;
     font-size: 35px;
-    opacity: 0;
+    opacity: 1;
 }
 #info.infodone {
     transition: opacity 1s;
     transition-delay: 10s;
+    opacity: 0;
 }
 
 #loader{
